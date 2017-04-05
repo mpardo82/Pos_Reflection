@@ -37,15 +37,17 @@ namespace Univem.Pos.Reflection
         protected String LogArray(Object obj)
         {
             StringBuilder retorno = new StringBuilder();
+            string prepend = "";
 
             Array ar = (Array)obj;
             if (obj != null && ar.Length > 0)
             {
                 for (int i = 0; i < ar.Length; i++)
                 {
-                    retorno.AppendFormat("{0},", ar.GetValue(i));
+                    retorno.Append(prepend);
+                    retorno.AppendFormat("{0}", ar.GetValue(i));
+                    prepend = ",";
                 }
-                retorno = retorno.Remove(retorno.Length - 1, 1); //removendo a ultima vírgula
             }
 
             return String.Format("[{0}]", retorno.ToString());
